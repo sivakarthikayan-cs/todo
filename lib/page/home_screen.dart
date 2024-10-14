@@ -69,22 +69,67 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(editData != null ? "Edit" : "Add"),
-          content: TextField(
-              controller: textController,
-              decoration: const InputDecoration(hintText: "Type here"),
-              onSubmitted: (_) => submitFun(editData: editData)),
-          actions: [
-            TextButton(
-              child: const Text("Cancel"),
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
-            ),
-            TextButton(
-                child: const Text("Submit"),
-                onPressed: () async => submitFun(editData: editData)),
-          ],
+          clipBehavior: Clip.antiAlias,
+          contentPadding: EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          content: Stack(
+            children: [
+              Positioned.fill(
+                child: Opacity(
+                  opacity: 0.9,
+                  child: Image.asset(
+                    'assets/png/bg_image.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              // Dialog content
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        editData != null ? "Edit" : "Add",
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      TextField(
+                        controller: textController,
+                        decoration: const InputDecoration(
+                          hintText: "Type here",
+                          hintStyle: TextStyle(color: Colors.white70),
+                        ),
+                        onSubmitted: (_) => submitFun(editData: editData),
+                        style: const TextStyle(color: Colors.white),
+                        maxLines: null,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: const Text("Cancel",
+                                style: TextStyle(color: Colors.white)),
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                          ),
+                          TextButton(
+                            child: const Text("Submit",
+                                style: TextStyle(color: Colors.white)),
+                            onPressed: () async =>
+                                submitFun(editData: editData),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
