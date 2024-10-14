@@ -1,16 +1,18 @@
-# todo_app
+# Todo App using Drift Database in Flutter
 
-A new Flutter project.
+Flutter provides several ways to store the data in local, We'll build an example that manages a list of todo responses, focusing on how to create, read, update, and delete todo items using Drift Database
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Examples
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter todos](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-todos, guidance on mobile development, and a full API reference.
+<div  style="text-align: center">
+    <table>
+        <tr>
+            <td style="text-align: center">
+                <a href="https://medium.com/@sivakarthikayan.cs/exploring-three-approaches-to-implement-dragging-in-flutter-2b486a6f1ee0">
+                    <img src="https://github.com/sivakarthikayan-cs/todo/blob/main/assets/gif/thumbnail.gif" width="201" height="600"/>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
