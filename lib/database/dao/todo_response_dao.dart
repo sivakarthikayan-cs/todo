@@ -40,7 +40,10 @@ class TodoResponseDao extends DatabaseAccessor<AppDatabase>
 
   // Update todo response
   Future<int> updateTodoResponseRecord(
-      {required int id, String? value, bool? isCompleted}) async {
+      {required int id,
+      String? value,
+      bool? isCompleted,
+      required String updateDate}) async {
     // Fetch the existing record
     final existingRecord = await (select(todoResponse)
           ..where((tbl) => tbl.id.equals(id)))
@@ -51,8 +54,8 @@ class TodoResponseDao extends DatabaseAccessor<AppDatabase>
 
     return await (update(todoResponse)..where((tbl) => tbl.id.equals(id)))
         .write(TodoResponseCompanion(
-      data: Value(newValue),
-      isCompleted: Value(isCompleted ?? existingRecord.isCompleted),
-    ));
+            data: Value(newValue),
+            isCompleted: Value(isCompleted ?? existingRecord.isCompleted),
+            updatedAt: Value(updateDate)));
   }
 }

@@ -12,6 +12,8 @@ part 'database.g.dart';
 class TodoResponse extends Table {
   IntColumn get id => integer().named("_id").autoIncrement()();
   TextColumn get data => text().named("data")();
+  TextColumn get createdAt => text().named("created_at")();
+  TextColumn? get updatedAt => text().named("updated_at").nullable()();
   BoolColumn get isCompleted =>
       boolean().named("isCompleted").withDefault(const Constant(false))();
 }

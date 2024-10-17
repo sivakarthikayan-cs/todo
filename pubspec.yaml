@@ -44,6 +44,7 @@ dependencies:
   path: ^1.8.2
   sqlite3_flutter_libs: ^0.5.13
   lottie: ^3.1.2
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
