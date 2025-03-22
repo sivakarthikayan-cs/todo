@@ -38,11 +38,11 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   flip_card: ^0.7.0
-  drift: ^2.20.3
-  path_provider: ^2.1.4
+  drift: ^2.25.0
+  path: ^1.9.0
+  path_provider: ^2.1.5
+  sqlite3_flutter_libs: ^0.5.30
   universal_io: ^2.2.2
-  path: ^1.8.2
-  sqlite3_flutter_libs: ^0.5.13
   lottie: ^3.1.2
   intl: ^0.19.0
 
@@ -59,7 +59,7 @@ dev_dependencies:
   freezed: ^2.5.7
   build_runner: ^2.4.13
   json_serializable: ^6.8.0
-  flutter_slidable: ^3.1.1
+  flutter_slidable: ^4.0.0
   drift_dev: ^2.20.3
 
 

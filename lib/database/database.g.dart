@@ -338,61 +338,78 @@ typedef $$TodoResponseTableUpdateCompanionBuilder = TodoResponseCompanion
 });
 
 class $$TodoResponseTableFilterComposer
-    extends FilterComposer<_$AppDatabase, $TodoResponseTable> {
-  $$TodoResponseTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $TodoResponseTable> {
+  $$TodoResponseTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get data => $state.composableBuilder(
-      column: $state.table.data,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get data => $composableBuilder(
+      column: $table.data, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get createdAt => $state.composableBuilder(
-      column: $state.table.createdAt,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get updatedAt => $state.composableBuilder(
-      column: $state.table.updatedAt,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<String> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<bool> get isCompleted => $state.composableBuilder(
-      column: $state.table.isCompleted,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
+  ColumnFilters<bool> get isCompleted => $composableBuilder(
+      column: $table.isCompleted, builder: (column) => ColumnFilters(column));
 }
 
 class $$TodoResponseTableOrderingComposer
-    extends OrderingComposer<_$AppDatabase, $TodoResponseTable> {
-  $$TodoResponseTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+    extends Composer<_$AppDatabase, $TodoResponseTable> {
+  $$TodoResponseTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get data => $state.composableBuilder(
-      column: $state.table.data,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get data => $composableBuilder(
+      column: $table.data, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get createdAt => $state.composableBuilder(
-      column: $state.table.createdAt,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get updatedAt => $state.composableBuilder(
-      column: $state.table.updatedAt,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<String> get updatedAt => $composableBuilder(
+      column: $table.updatedAt, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<bool> get isCompleted => $state.composableBuilder(
-      column: $state.table.isCompleted,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
+  ColumnOrderings<bool> get isCompleted => $composableBuilder(
+      column: $table.isCompleted, builder: (column) => ColumnOrderings(column));
+}
+
+class $$TodoResponseTableAnnotationComposer
+    extends Composer<_$AppDatabase, $TodoResponseTable> {
+  $$TodoResponseTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get data =>
+      $composableBuilder(column: $table.data, builder: (column) => column);
+
+  GeneratedColumn<String> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<String> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<bool> get isCompleted => $composableBuilder(
+      column: $table.isCompleted, builder: (column) => column);
 }
 
 class $$TodoResponseTableTableManager extends RootTableManager<
@@ -401,6 +418,7 @@ class $$TodoResponseTableTableManager extends RootTableManager<
     TodoResponseData,
     $$TodoResponseTableFilterComposer,
     $$TodoResponseTableOrderingComposer,
+    $$TodoResponseTableAnnotationComposer,
     $$TodoResponseTableCreateCompanionBuilder,
     $$TodoResponseTableUpdateCompanionBuilder,
     (
@@ -413,10 +431,12 @@ class $$TodoResponseTableTableManager extends RootTableManager<
       : super(TableManagerState(
           db: db,
           table: table,
-          filteringComposer:
-              $$TodoResponseTableFilterComposer(ComposerState(db, table)),
-          orderingComposer:
-              $$TodoResponseTableOrderingComposer(ComposerState(db, table)),
+          createFilteringComposer: () =>
+              $$TodoResponseTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$TodoResponseTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$TodoResponseTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback: ({
             Value<int> id = const Value.absent(),
             Value<String> data = const Value.absent(),
@@ -458,6 +478,7 @@ typedef $$TodoResponseTableProcessedTableManager = ProcessedTableManager<
     TodoResponseData,
     $$TodoResponseTableFilterComposer,
     $$TodoResponseTableOrderingComposer,
+    $$TodoResponseTableAnnotationComposer,
     $$TodoResponseTableCreateCompanionBuilder,
     $$TodoResponseTableUpdateCompanionBuilder,
     (
